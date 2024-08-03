@@ -172,8 +172,8 @@ class ProgramOfflineController extends Controller
             $user->notify(new SendNewUserNotification($transaction));
 
             // Kirim Telegram
-            // $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
-            // $admin->notify(new SendNewUserNotification($user));
+            $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
+            $admin->notify(new SendNewUserNotification($user));
 
             // Kirim WA
             $message = "*Mohon dibaca dan dipahami!*\n\n_Hallo, saya admin dari English Booster Kampung Inggris, akun kamu telah terdaftar di platform kami dengan data_\n\nNama: " . $user->name . "\nEmail: " . $user->email . "\n\nBerikut link pembayaran dan verifikasi kamu\n" . env('APP_URL') . "/payment/" . $transaction->id . "/down-payment" . "\n\n*Jika link tidak bisa diklik, silakan simpan dulu nomor ini atau copy dan paste dibrowser kamu.*\n\n_terimakasih telah menjadi bagian dari kami, semoga English Booster Kampung Inggris dapat membantu proses belajar kamu. aamiin._";
