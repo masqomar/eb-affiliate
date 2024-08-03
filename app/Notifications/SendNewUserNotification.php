@@ -52,7 +52,7 @@ class SendNewUserNotification extends Notification
             'code' => $this->transaction->code,
             'program' => $this->transaction->program->name,
             'price' => number_format($this->transaction->program->price),
-            'period' => $this->transaction->program->period->period_date,
+            'period' => $this->transaction->period,
             'down_payment' => number_format($this->transaction->down_payment)
         ];
 

@@ -111,7 +111,7 @@
 @endsection
 
 
-@section('js')
+@push('js')
 <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
 <script type="text/javascript">
     document.getElementById('pay-button').onclick = function() {
@@ -128,4 +128,4 @@
         });
     };
 </script>
-@endsection
+@endpush

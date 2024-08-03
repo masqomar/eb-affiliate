@@ -79,7 +79,7 @@ class ProgramOfflineController extends Controller
                 $coupon = Coupon::where('id', $request->coupon_id)->first();
                 $discount = $coupon->amount;
                 $discountPayment = $admin_fee + $programPrice - $discount;
-                $downPayment = $discountPayment * 0.2;
+                $downPayment = ceil($discountPayment * 0.2);
                 $transaction = Transaction::create([
                     'user_id' => $user->id,
                     'total_purchases' => $discountPayment,
@@ -94,48 +94,36 @@ class ProgramOfflineController extends Controller
                     'period' => $periode->period_date
                 ]);
 
-                // $payload = [
-                //     'transaction_details' => [
-                //         'order_id'     => $transaction->invoice,
-                //         'gross_amount' => $downPayment,
-                //     ],
-                //     'customer_details' => [
-                //         'first_name'    => $user->name,
-                //         'email'         => $user->email,
-                //         'phone'         => $student->phone_number
-                //     ],
-                //     'item_details' => [
-                //         [
-                //             'id'            => $transaction->invoice,
-                //             'price'         => $downPayment,
-                //             'quantity'      => 1,
-                //             'name'          => 'Down Paymnet Program ' . $program->name,
-                //             'brand'         => 'English Booster',
-                //             'category'      => 'English Course',
-                //             'merchant_name' => config('app.name'),
-                //         ],
-                //     ],
-                // ];
+                $payload = [
+                    'transaction_details' => [
+                        'order_id'     => $transaction->invoice,
+                        'gross_amount' => $downPayment,
+                    ],
+                    'customer_details' => [
+                        'first_name'    => $user->name,
+                        'email'         => $user->email,
+                        'phone'         => $student->phone_number
+                    ],
+                    'item_details' => [
+                        [
+                            'id'            => $transaction->invoice,
+                            'price'         => $downPayment,
+                            'quantity'      => 1,
+                            'name'          => 'Down Paymnet Program ' . $program->name,
+                            'brand'         => 'English Booster',
+                            'category'      => 'English Course',
+                            'merchant_name' => config('app.name'),
+                        ],
+                    ],
+                ];
 
-                // $snapToken = \Midtrans\Snap::getSnapToken($payload);
-                // $transaction->snap_token = $snapToken;
-                // $transaction->save();
+                $snapToken = \Midtrans\Snap::getSnapToken($payload);
+                $transaction->snap_token = $snapToken;
+                $transaction->save();
 
-                // Kirim Email
-                // $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
-                // $admin->notify(new SendNewUserNotification($transaction));
-                // $user->notify(new SendNewUserNotification($transaction));
-
-                // Kirim Telegram
-                // $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
-                // $admin->notify(new SendNewUserNotification($user));
-
-                // Kirim WA
-                // $message = "*Mohon dibaca dan dipahami!*\n\n_Hallo, saya admin dari English Booster Kampung Inggris, akun kamu telah terdaftar di platform kami dengan data_\n\nNama: " . $user->name . "\nEmail: " . $user->email . "\n\nBerikut link pembayaran dan verifikasi kamu\n" . env('APP_URL') . "/payment/" . $transaction->id . "/down-payment" . "\n\n*Jika link tidak bisa diklik, silakan simpan dulu nomor ini atau copy dan paste dibrowser kamu.*\n\n_terimakasih telah menjadi bagian dari kami, semoga English Booster Kampung Inggris dapat membantu proses belajar kamu. aamiin._";
-                // sendWhatsappNotification($student->phone_number, $message);
             } else {
                 $payment = $admin_fee + $programPrice;
-                $dp = $payment * 0.2;
+                $dp = ceil($payment * 0.2);
                 $transaction = Transaction::create([
                     'user_id' => $user->id,
                     'total_purchases' => $admin_fee + $programPrice,
@@ -150,46 +138,46 @@ class ProgramOfflineController extends Controller
                     'period' => $periode->period_date
                 ]);
 
-                // $payload = [
-                //     'transaction_details' => [
-                //         'order_id'     => $transaction->invoice,
-                //         'gross_amount' => $dp,
-                //     ],
-                //     'customer_details' => [
-                //         'first_name'    => $user->name,
-                //         'email'         => $user->email,
-                //         'phone'         => $student->phone_number
-                //     ],
-                //     'item_details' => [
-                //         [
-                //             'id'            => $transaction->invoice,
-                //             'price'         => $dp,
-                //             'quantity'      => 1,
-                //             'name'          => 'Down Paymnet Program ' . $program->name,
-                //             'brand'         => 'English Booster',
-                //             'category'      => 'English Course',
-                //             'merchant_name' => config('app.name'),
-                //         ],
-                //     ],
-                // ];
+                $payload = [
+                    'transaction_details' => [
+                        'order_id'     => $transaction->invoice,
+                        'gross_amount' => $dp,
+                    ],
+                    'customer_details' => [
+                        'first_name'    => $user->name,
+                        'email'         => $user->email,
+                        'phone'         => $student->phone_number
+                    ],
+                    'item_details' => [
+                        [
+                            'id'            => $transaction->invoice,
+                            'price'         => $dp,
+                            'quantity'      => 1,
+                            'name'          => 'Down Paymnet Program ' . $program->name,
+                            'brand'         => 'English Booster',
+                            'category'      => 'English Course',
+                            'merchant_name' => config('app.name'),
+                        ],
+                    ],
+                ];
 
-                // $snapToken = \Midtrans\Snap::getSnapToken($payload);
-                // $transaction->snap_token = $snapToken;
-                // $transaction->save();
-
-                // Kirim Email
-                // $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
-                // $admin->notify(new SendNewUserNotification($transaction));
-                // $user->notify(new SendNewUserNotification($transaction));
-
-                // Kirim Telegram
-                // $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
-                // $admin->notify(new SendNewUserNotification($user));
-
-                // Kirim WA
-                // $message = "*Mohon dibaca dan dipahami!*\n\n_Hallo, saya admin dari English Booster Kampung Inggris, akun kamu telah terdaftar di platform kami dengan data_\n\nNama: " . $user->name . "\nEmail: " . $user->email . "\n\nBerikut link pembayaran dan verifikasi kamu\n" . env('APP_URL') . "/payment/" . $transaction->id . "/down-payment" . "\n\n*Jika link tidak bisa diklik, silakan simpan dulu nomor ini atau copy dan paste dibrowser kamu.*\n\n_terimakasih telah menjadi bagian dari kami, semoga English Booster Kampung Inggris dapat membantu proses belajar kamu. aamiin._";
-                // sendWhatsappNotification($student->phone_number, $message);
+                $snapToken = \Midtrans\Snap::getSnapToken($payload);
+                $transaction->snap_token = $snapToken;
+                $transaction->save();
             }
+
+            // Kirim Email
+            $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
+            $admin->notify(new SendNewUserNotification($transaction));
+            $user->notify(new SendNewUserNotification($transaction));
+
+            // Kirim Telegram
+            // $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
+            // $admin->notify(new SendNewUserNotification($user));
+
+            // Kirim WA
+            $message = "*Mohon dibaca dan dipahami!*\n\n_Hallo, saya admin dari English Booster Kampung Inggris, akun kamu telah terdaftar di platform kami dengan data_\n\nNama: " . $user->name . "\nEmail: " . $user->email . "\n\nBerikut link pembayaran dan verifikasi kamu\n" . env('APP_URL') . "/payment/" . $transaction->id . "/down-payment" . "\n\n*Jika link tidak bisa diklik, silakan simpan dulu nomor ini atau copy dan paste dibrowser kamu.*\n\n_terimakasih telah menjadi bagian dari kami, semoga English Booster Kampung Inggris dapat membantu proses belajar kamu. aamiin._";
+            sendWhatsappNotification($student->phone_number, $message);
 
 
             DB::commit();
