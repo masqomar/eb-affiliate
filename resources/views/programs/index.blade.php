@@ -78,16 +78,6 @@
                                                 <th>{{ __('Status') }}</th>
                                             </tr>
                                         </thead>
-                                        <!-- <tfoot>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
-                                            </tr>
-                                        </tfoot> -->
                                     </table>
                                 </div>
                             </div>
@@ -134,8 +124,8 @@
                     name: 'program_type.category.name'
                 },
                 {
-                    data: 'period.period_date',
-                    name: 'period.period_date'
+                    data: 'period_date',
+                    name: 'period_date'
                 },
                 {
                     data: 'price',
@@ -162,26 +152,6 @@
                     searchable: false,
                 },
             ],
-            // initComplete: (function() {
-            //     this.api()
-            //         .columns()
-            //         .every(function() {
-            //             let column = this;
-            //             let title = column.footer().textContent;
-
-            //             // Create input element
-            //             let input = document.createElement('input');
-            //             input.placeholder = title;
-            //             column.footer().replaceChildren(input);
-
-            //             // Event listener for user input
-            //             input.addEventListener('keyup', () => {
-            //                 if (column.search() !== this.value) {
-            //                     column.search(input.value).draw();
-            //                 }
-            //             });
-            //         });
-            // }),
         });
 
         $('#is_active').change(function() {

@@ -24,7 +24,7 @@ class Program extends Model
    *
    * @var string[]
    */
-  protected $fillable = ['name', 'price', 'image', 'is_active', 'period_id', 'program_type_id'];
+  protected $fillable = ['name', 'price', 'image', 'is_active', 'program_type_id'];
 
   /**
    * The attributes that should be cast.

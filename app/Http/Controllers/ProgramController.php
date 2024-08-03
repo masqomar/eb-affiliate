@@ -31,8 +31,11 @@ class ProgramController extends Controller
     {
         $periods = Period::get();
         if ($request->ajax()) {
-            $programs = Program::with('period:id,period_date', 'program_type:id,name,category_id', 'program_type.category:id,name');
+            $programs = Program::with('periods:id,period_date', 'program_type:id,name,category_id', 'program_type.category:id,name');
             return Datatables::of($programs)
+                ->addColumn('period_date', function ($programs) {
+                    return implode("<br/>", $programs->periods->pluck('period_date')->toArray());
+                })
                 ->addColumn('is_active', function ($row) {
                     if ($row->is_active) {
                         return '<span class="dashboard__td dashboard__td--over">Aktif</span>';
@@ -62,7 +65,7 @@ class ProgramController extends Controller
                     }
                 })
                 ->addColumn('action', 'programs.include.action')
-                ->rawColumns(['is_active', 'action'])
+                ->rawColumns(['is_active', 'action', 'period_date'])
 
                 ->make(true);
         }
@@ -86,14 +89,19 @@ class ProgramController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreProgramRequest $request)
-    {
-        $attr = $request->validated();
+    {      
+        $program = Program::create([
+            'name' => $request->name,
+            'price' => $request->price,
+            'is_active' => $request->is_active,
+            'program_type_id' => $request->program_type_id,
+        ]);
 
+        $program->periods()->attach($request->periods);
+        
         if ($request->file('image') && $request->file('image')->isValid()) {
-
             $path = storage_path('app/public/uploads/images/');
             $filename = $request->file('image')->hashName();
-
             if (!file_exists($path)) {
                 mkdir($path, 0777, true);
             }
@@ -103,11 +111,10 @@ class ProgramController extends Controller
                 $constraint->aspectRatio();
             })->save($path . $filename);
 
-            $attr['image'] = $filename;
+            $program['image'] = $filename;
+            $program->save();
         }
-
-        $program = Program::create($attr);
-
+        
         return redirect()
             ->route('programs.index')
             ->with('success', __('The program was created successfully.'));

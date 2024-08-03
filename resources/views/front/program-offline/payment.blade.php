@@ -1,4 +1,5 @@
 @extends('front.layouts.master')
+@section('title', __('Pendaftaran English Booster'))
 @section('content')
 <div class="blogarea__2 sp_top_100 sp_bottom_100">
     <div class="container">
@@ -52,7 +53,7 @@
 
                                 <li>
                                     <div class="course__summery__item">
-                                        <span class="sb_label">Periode</span><span class="sb_content">{{ $transaction->program->period->period_date }}</span>
+                                        <span class="sb_label">Periode</span><span class="sb_content">{{ $transaction->period }}</span>
                                     </div>
                                 </li>
 
@@ -83,7 +84,7 @@
 
                                 <li>
                                     <div class="course__summery__item">
-                                        <span class="sb_label"><strong>Down Payment <sup>20% dari total biaya program</sup></strong></span><span class="sb_content"><strong>Rp. {{ number_format($transaction->down_payment) }}</strong></span>
+                                        <span class="sb_label"><strong>Down Payment</strong></span><span class="sb_content"><strong>Rp. {{ number_format($transaction->down_payment) }}</strong></span>
                                     </div>
                                 </li>
 

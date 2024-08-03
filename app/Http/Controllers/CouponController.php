@@ -24,15 +24,19 @@ class CouponController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $coupons = Coupon::with('program:id,name', );
+            $coupons = Coupon::with('program:id,name,program_type_id', 'program.program_type.category:id,name');
 
             return DataTables::of($coupons)
                 ->addColumn('program', function ($row) {
                     return $row->program ? $row->program->name : '';
                 })->addColumn('start_date', function ($row) {
-                    return $row->start_date ? $row->start_date : '-';
+                    return $row->start_date ? $row->start_date->format('d-m-Y') : '-';
                 })->addColumn('end_date', function ($row) {
-                    return $row->end_date ? $row->end_date : '-';
+                    return $row->end_date ? $row->end_date->format('d-m-Y') : '-';
+                })->addColumn('amount', function ($row) {
+                    return $row->amount ? number_format($row->amount) : '-';
+                })->addColumn('category_name', function ($row) {
+                    return $row->program->program_type->category->name ? $row->program->program_type->category->name : '-' ;
                 })->addColumn('action', 'coupons.include.action')
                 ->toJson();
         }
@@ -58,8 +62,18 @@ class CouponController extends Controller
      */
     public function store(StoreCouponRequest $request)
     {
-        
-        Coupon::create($request->validated());
+        $data = [
+            'code' => $request->code,
+            'amount' => $request->amount,
+            'qty' => $request->qty,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+        ];
+
+        foreach ($request->programs as $program_id) {
+            $data['program_id'] = $program_id;
+            Coupon::create($data);
+        }
 
         return redirect()
             ->route('coupons.index')
@@ -74,9 +88,9 @@ class CouponController extends Controller
      */
     public function show(Coupon $coupon)
     {
-        $coupon->load('program:id,name', );
+        $coupon->load('program:id,name',);
 
-		return view('coupons.show', compact('coupon'));
+        return view('coupons.show', compact('coupon'));
     }
 
     /**
@@ -87,9 +101,9 @@ class CouponController extends Controller
      */
     public function edit(Coupon $coupon)
     {
-        $coupon->load('program:id,name', );
+        $coupon->load('program:id,name',);
 
-		return view('coupons.edit', compact('coupon'));
+        return view('coupons.edit', compact('coupon'));
     }
 
     /**
@@ -101,7 +115,7 @@ class CouponController extends Controller
      */
     public function update(UpdateCouponRequest $request, Coupon $coupon)
     {
-        
+
         $coupon->update($request->validated());
 
         return redirect()

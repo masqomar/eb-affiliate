@@ -1,4 +1,5 @@
 @extends('front.layouts.master')
+@section('title', __('Pendaftaran English Booster'))
 @section('content')
 <div class="blogarea__2 sp_top_100 sp_bottom_100">
     <div class="container">

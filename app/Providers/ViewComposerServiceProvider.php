@@ -57,14 +57,14 @@ class ViewComposerServiceProvider extends ServiceProvider
 		View::composer(['programs.create', 'programs.edit'], function ($view) {
             return $view->with(
                 'programTypes',
-                \App\Models\ProgramType::select('id', 'name')->get()
+                \App\Models\ProgramType::with('category')->select('id', 'name', 'category_id')->get()
             );
         });
 
 				View::composer(['coupons.create', 'coupons.edit'], function ($view) {
             return $view->with(
                 'programs',
-                \App\Models\Program::select('id', 'name')->get()
+                \App\Models\Program::with('program_type.category')->where('is_active', 1)->select('id', 'name', 'program_type_id')->get()
             );
         });
 

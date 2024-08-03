@@ -27,9 +27,10 @@ class StoreCouponRequest extends FormRequest
             'code' => 'required|string|max:255',
 			'amount' => 'required|numeric',
 			'qty' => 'nullable|numeric',
-			'program_id' => 'nullable|exists:App\Models\Program,id',
 			'start_date' => 'nullable|date',
 			'end_date' => 'nullable|date',
+            'programs' => 'required|array',
+            'programs.*' => 'exists:programs,id',
         ];
     }
 }

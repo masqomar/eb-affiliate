@@ -1,4 +1,5 @@
 @extends('front.layouts.master')
+@section('title', __('Pendaftaran English Booster'))
 @section('content')
 <div class="checkoutarea sp_bottom_100 sp_top_100">
     <div class="container">
@@ -67,9 +68,7 @@
                             @enderror
                         </div>
 
-                            <input type="hidden" class="couponId" name="coupon_id">
-
-                   
+                        <input type="hidden" class="couponId" name="coupon_id">
 
                 </div>
 
@@ -92,7 +91,14 @@
                                 <li>
                                     <div class="course__summery__item">
                                         <span class="sb_label">Periode</span>
-                                        <span class="sb_content"><strong>{{ $program->period->period_date }}</strong></span>
+                                        <span>
+                                            <select name="period_id" id="period_id" required>
+                                                <option value="">Periode</option>
+                                                @foreach ($program->periods as $period)
+                                                <option value="{{ $period->id }}">{{ $period->period_date }}</option>
+                                                @endforeach
+                                            </select>
+                                        </span>
                                     </div>
                                 </li>
 
@@ -128,7 +134,6 @@
                             </ul>
                         </div>
                         <span>Punya kupon diskon?</span>
-
                         <div class="input-group mb-1">
                             <input type="hidden" class="form-control program_id" value="{{ $program->id }}" name="program_id">
                             <input type="text" class="form-control coupon_code" name="coupon_code">

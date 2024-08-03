@@ -25,14 +25,14 @@ class Transaction extends Model
      *
      * @var string[]
      */
-    protected $fillable = ['user_id', 'exam_id', 'code', 'voucher_activated', 'voucher_used', 'total_purchases', 'maximum_payment_time', 'transaction_status', 'voucher_token', 'invoice', 'program_id', 'snap_token', 'program_date', 'program_time', 'note', 'discount', 'admin_fee', 'down_payment'];
+    protected $fillable = ['user_id', 'exam_id', 'code', 'voucher_activated', 'voucher_used', 'total_purchases', 'maximum_payment_time', 'transaction_status', 'voucher_token', 'invoice', 'program_id', 'snap_token', 'program_date', 'program_time', 'note', 'discount', 'admin_fee', 'down_payment', 'period'];
 
     /**
      * The attributes that should be cast.
      *
      * @var string[]
      */
-    protected $casts = ['code' => 'string', 'total_purchases' => 'double', 'maximum_payment_time' => 'datetime:d/m/Y H:i', 'voucher_token' => 'string', 'invoice' => 'string', 'snap_token' => 'string', 'program_date' => 'date:d/m/Y', 'program_time' => 'datetime:H:i', 'discount' => 'integer', 'admin_fee' => 'integer', 'down_payment' => 'integer', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i'];
+    protected $casts = ['code' => 'string', 'total_purchases' => 'double', 'maximum_payment_time' => 'datetime:d/m/Y H:i', 'voucher_token' => 'string', 'invoice' => 'string', 'snap_token' => 'string', 'program_date' => 'date:d/m/Y', 'program_time' => 'datetime:H:i', 'discount' => 'integer', 'admin_fee' => 'integer', 'down_payment' => 'integer', 'created_at' => 'datetime:d/m/Y H:i', 'updated_at' => 'datetime:d/m/Y H:i', 'period' => 'string'];
 
 
     public function user()

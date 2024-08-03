@@ -33,6 +33,7 @@
                                                 <th>{{ __('Amount') }}</th>
                                                 <th>{{ __('Qty') }}</th>
                                                 <th>{{ __('Program') }}</th>
+                                                <th>{{ __('aa') }}</th>
                                                 <th>{{ __('Start Date') }}</th>
                                                 <th>{{ __('End Date') }}</th>
                                                 <th>{{ __('Action') }}</th>
@@ -78,6 +79,10 @@
             {
                 data: 'program',
                 name: 'program.name'
+            },
+            {
+                data: 'category_name',
+                name: 'category_name'
             },
             {
                 data: 'start_date',

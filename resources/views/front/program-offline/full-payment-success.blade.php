@@ -1,5 +1,5 @@
 @extends('front.layouts.master')
-
+@section('title', __('Pendaftaran English Booster'))
 @section('content')
 <section class="py-3 py-md-5">
     <div class="container">

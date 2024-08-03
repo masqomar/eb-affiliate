@@ -1,4 +1,5 @@
 @extends('front.layouts.master')
+@section('title', __('Pendaftaran English Booster'))
 @section('content')
 <!-- herobannerarea__section__start -->
 <div class="herobannerarea herobannerarea__box">

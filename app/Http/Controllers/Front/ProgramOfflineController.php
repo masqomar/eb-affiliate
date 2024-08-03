@@ -13,12 +13,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\WelcomeMail;
-use App\Notifications\HelloUserNotification;
+use App\Models\Period;
 use App\Notifications\SendNewUserNotification;
-use Illuminate\Support\Facades\Notification;
-use Proton\Mail\DefaultMail;
 
 class ProgramOfflineController extends Controller
 {
@@ -40,7 +36,7 @@ class ProgramOfflineController extends Controller
 
     public function show($id)
     {
-        $program = Program::find($id);
+        $program = Program::with('periods')->find($id);
 
         return view('front.program-offline.show', compact('program'));
     }
@@ -54,6 +50,7 @@ class ProgramOfflineController extends Controller
             'gender'        => 'required|string',
             'address'       => 'required|string|max:255',
             'program_id'    => 'required|string|max:255',
+            'period_id'     => 'required|integer',
             'coupon_code'   => 'nullable|string|max:255'
         ]);
 
@@ -74,6 +71,7 @@ class ProgramOfflineController extends Controller
             ]);
 
             $program = Program::where('id', $request->program_id)->first();
+            $periode = Period::where('id', $request->period_id)->first();
             $admin_fee = 99285;
             $programPrice = $program->price;
 
@@ -90,13 +88,10 @@ class ProgramOfflineController extends Controller
                     'transaction_status' => 'pending',
                     'invoice' => 'EB.' . date('dmy') . '.' . rand(1000, 9999),
                     'program_id' => $request->program_id,
-                    'program_date' => $request->program_date,
-                    'program_time' => $request->program_time,
-                    'note' => $request->message,
                     'discount' => $discount,
                     'admin_fee' => $admin_fee,
-                    'down_payment' => $downPayment
-
+                    'down_payment' => $downPayment,
+                    'period' => $periode->period_date
                 ]);
 
                 // $payload = [
@@ -127,14 +122,15 @@ class ProgramOfflineController extends Controller
                 // $transaction->save();
 
                 // Kirim Email
-                $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
+                // $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
                 // $admin->notify(new SendNewUserNotification($transaction));
-                $user->notify(new SendNewUserNotification($transaction));
-                
+                // $user->notify(new SendNewUserNotification($transaction));
+
                 // Kirim Telegram
                 // $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
                 // $admin->notify(new SendNewUserNotification($user));
 
+                // Kirim WA
                 // $message = "*Mohon dibaca dan dipahami!*\n\n_Hallo, saya admin dari English Booster Kampung Inggris, akun kamu telah terdaftar di platform kami dengan data_\n\nNama: " . $user->name . "\nEmail: " . $user->email . "\n\nBerikut link pembayaran dan verifikasi kamu\n" . env('APP_URL') . "/payment/" . $transaction->id . "/down-payment" . "\n\n*Jika link tidak bisa diklik, silakan simpan dulu nomor ini atau copy dan paste dibrowser kamu.*\n\n_terimakasih telah menjadi bagian dari kami, semoga English Booster Kampung Inggris dapat membantu proses belajar kamu. aamiin._";
                 // sendWhatsappNotification($student->phone_number, $message);
             } else {
@@ -148,13 +144,10 @@ class ProgramOfflineController extends Controller
                     'transaction_status' => 'pending',
                     'invoice' => 'EB.' . date('dmy') . '.' . rand(1000, 9999),
                     'program_id' => $request->program_id,
-                    'program_date' => $request->program_date,
-                    'program_time' => $request->program_time,
-                    'note' => $request->message,
                     'discount' => 0,
                     'admin_fee' => $admin_fee,
-                    'down_payment' => $dp
-
+                    'down_payment' => $dp,
+                    'period' => $periode->period_date
                 ]);
 
                 // $payload = [
@@ -185,14 +178,15 @@ class ProgramOfflineController extends Controller
                 // $transaction->save();
 
                 // Kirim Email
-                $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
+                // $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
                 // $admin->notify(new SendNewUserNotification($transaction));
-                $user->notify(new SendNewUserNotification($transaction));
+                // $user->notify(new SendNewUserNotification($transaction));
 
                 // Kirim Telegram
                 // $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
                 // $admin->notify(new SendNewUserNotification($user));
 
+                // Kirim WA
                 // $message = "*Mohon dibaca dan dipahami!*\n\n_Hallo, saya admin dari English Booster Kampung Inggris, akun kamu telah terdaftar di platform kami dengan data_\n\nNama: " . $user->name . "\nEmail: " . $user->email . "\n\nBerikut link pembayaran dan verifikasi kamu\n" . env('APP_URL') . "/payment/" . $transaction->id . "/down-payment" . "\n\n*Jika link tidak bisa diklik, silakan simpan dulu nomor ini atau copy dan paste dibrowser kamu.*\n\n_terimakasih telah menjadi bagian dari kami, semoga English Booster Kampung Inggris dapat membantu proses belajar kamu. aamiin._";
                 // sendWhatsappNotification($student->phone_number, $message);
             }
@@ -260,6 +254,7 @@ class ProgramOfflineController extends Controller
             // $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
             // $admin->notify(new SendTransactionNotification($transaction));
 
+            // Kirim WA
             $message = "*Pembayaran Terverifikasi*\n\n_Terimakasih telah menjadi bagian dari kami, semoga English Booster Kampung Inggris dapat membantu proses belajar kamu. aamiin._";
             sendWhatsappNotification($transaction->user->student->phone_number, $message);
         } elseif ($transactionStatus == 'cancel' || $transactionStatus == 'deny' || $transactionStatus == 'expire') {
@@ -272,6 +267,7 @@ class ProgramOfflineController extends Controller
             // $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
             // $admin->notify(new SendTransactionNotification($transaction));
 
+            // Kirim WA
             $message = "*Pembayaran Gagal*\n\n_Silahkan hubungi admin untuk proses pembayaran. Terima kasih._";
             sendWhatsappNotification($transaction->user->student->phone_number, $message);
         }
