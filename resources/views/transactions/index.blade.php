@@ -39,9 +39,9 @@
                                 <table class="table table-striped" id="data-table" width="100%">
                                     <thead>
                                         <tr>
+											<th>{{ __('Code') }}</th>
                                             <th>{{ __('User') }}</th>
 											<th>{{ __('Exam') }}</th>
-											<th>{{ __('Code') }}</th>
 											<th>{{ __('Voucher Activated') }}</th>
 											<th>{{ __('Voucher Used') }}</th>
 											<th>{{ __('Total Purchases') }}</th>
@@ -87,6 +87,10 @@
             ajax: "{{ route('transactions.index') }}",
             columns: [
                 {
+                    data: 'code',
+                    name: 'code',
+                },
+                {
                     data: 'user',
                     name: 'user.name'
                 },
@@ -94,10 +98,7 @@
                     data: 'exam',
                     name: 'exam.category_id'
                 },
-				{
-                    data: 'code',
-                    name: 'code',
-                },
+				
 				{
                     data: 'voucher_activated',
                     name: 'voucher_activated',

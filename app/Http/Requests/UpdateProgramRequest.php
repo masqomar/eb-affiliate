@@ -25,11 +25,12 @@ class UpdateProgramRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-			'price' => 'required|numeric',
+            'price' => 'required|numeric',
+            'is_active' => 'nullable|numeric',
+            'program_type_id' => 'required|exists:App\Models\ProgramType,id',
+            'periods' => 'required|array',
+            'periods.*' => 'exists:periods,id',
 			'image' => 'nullable|image|max:2048',
-			'is_active' => 'nullable|numeric',
-			'period_id' => 'required|exists:App\Models\Period,id',
-			'program_type_id' => 'required|exists:App\Models\ProgramType,id',
         ];
     }
 }

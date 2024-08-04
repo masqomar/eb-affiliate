@@ -32,7 +32,8 @@ class SendNewUserNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'telegram'];
+        return ['mail'];
+        // return ['telegram'];
     }
 
     /**

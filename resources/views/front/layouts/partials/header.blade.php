@@ -23,6 +23,14 @@
                         </li>
 
                         <li class="mega__menu position-static">
+                            <a class="headerarea__has__dropdown" href="{{ route('front.program-offline.index') }}">Program Offline</a>                            
+                        </li>
+
+                        <li class="mega__menu position-static">
+                            <a class="headerarea__has__dropdown" href="{{ route('front.program-online.index') }}">Program Online</a>                            
+                        </li>
+
+                        <!-- <li class="mega__menu position-static">
                             <a class="headerarea__has__dropdown" href="">Program<i class="icofont-rounded-down"></i> </a>
                             <div class="headerarea__submenu mega__menu__wrapper">
 
@@ -60,7 +68,7 @@
                                 </div>
                             </div>
 
-                        </li>
+                        </li> -->
 
 
                         <li><a class="headerarea__has__dropdown" href="">Events & Promo</a></li>

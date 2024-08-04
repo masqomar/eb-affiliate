@@ -65,14 +65,12 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col" class="text-uppercase">Qty</th>
                                         <th scope="col" class="text-uppercase">Deskripsi</th>
                                         <th scope="col" class="text-uppercase text-end">Jumlah</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-group-divider">
                                     <tr>
-                                        <th scope="row">1</th>
                                         <td>Pelunasan Program {{ $transactionDetails->transaction->program->name }}</td>
                                         <td class="text-end">Rp. {{ number_format($transactionDetails->full_payment) }}</td>
                                     </tr>

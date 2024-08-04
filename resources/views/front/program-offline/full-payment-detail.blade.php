@@ -59,7 +59,7 @@
 
                                 <li>
                                     <div class="course__summery__item">
-                                        <span class="sb_label">Periode</span><span class="sb_content">{{ $transactionDetails->transaction->program->period->period_date }}</span>
+                                        <span class="sb_label">Periode</span><span class="sb_content">{{ $transactionDetails->transaction->period }}</span>
                                     </div>
                                 </li>
 
@@ -122,7 +122,7 @@
 </div>
 @endsection
 
-@section('js')
+@push('js')
 <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
 <script type="text/javascript">
     document.getElementById('pay-button').onclick = function() {
@@ -139,4 +139,4 @@
         });
     };
 </script>
-@endsection
+@endpush

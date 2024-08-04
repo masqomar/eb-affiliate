@@ -172,11 +172,11 @@ class ProgramOfflineController extends Controller
             $user->notify(new SendNewUserNotification($transaction));
 
             // Kirim Telegram
-            $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
-            $admin->notify(new SendNewUserNotification($user));
+            // $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
+            // $admin->notify(new SendNewUserNotification($user));
 
             // Kirim WA
-            $message = "*Mohon dibaca dan dipahami!*\n\n_Hallo, saya admin dari English Booster Kampung Inggris, akun kamu telah terdaftar di platform kami dengan data_\n\nNama: " . $user->name . "\nEmail: " . $user->email . "\n\nBerikut link pembayaran dan verifikasi kamu\n" . env('APP_URL') . "/payment/" . $transaction->id . "/down-payment" . "\n\n*Jika link tidak bisa diklik, silakan simpan dulu nomor ini atau copy dan paste dibrowser kamu.*\n\n_terimakasih telah menjadi bagian dari kami, semoga English Booster Kampung Inggris dapat membantu proses belajar kamu. aamiin._";
+            $message = "*Mohon dibaca dan dipahami!*\n\n_Hallo, saya admin dari English Booster Kampung Inggris, kamu telah terdaftar di platform kami dengan data_\n\nNama: " . $user->name . "\nEmail: " . $user->email . "\n\nBerikut link pembayaran dan verifikasi kamu\n" . env('APP_URL') . "/payment/" . $transaction->id . "/down-payment" . "\n\n*Jika link tidak bisa diklik, silakan simpan dulu nomor ini atau copy dan paste dibrowser kamu.*\n\n_terimakasih telah menjadi bagian dari kami, semoga English Booster Kampung Inggris dapat membantu proses belajarmu. aamiin._";
             sendWhatsappNotification($student->phone_number, $message);
 
 
@@ -239,11 +239,12 @@ class ProgramOfflineController extends Controller
             ]);
             $transaction = Transaction::where('invoice', $orderId)->first();
 
+             // Kirim Email
             // $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
             // $admin->notify(new SendTransactionNotification($transaction));
 
             // Kirim WA
-            $message = "*Pembayaran Terverifikasi*\n\n_Terimakasih telah menjadi bagian dari kami, semoga English Booster Kampung Inggris dapat membantu proses belajar kamu. aamiin._";
+            $message = "*Pembayaran Terverifikasi*\n\n_Terimakasih telah menjadi bagian dari kami, semoga English Booster Kampung Inggris dapat membantu proses belajarmu. aamiin._";
             sendWhatsappNotification($transaction->user->student->phone_number, $message);
         } elseif ($transactionStatus == 'cancel' || $transactionStatus == 'deny' || $transactionStatus == 'expire') {
             Transaction::where('invoice', $orderId)->update([
@@ -252,6 +253,7 @@ class ProgramOfflineController extends Controller
 
             $transaction = Transaction::where('invoice', $orderId)->first();
 
+            // Kirim Email
             // $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
             // $admin->notify(new SendTransactionNotification($transaction));
 
@@ -265,8 +267,8 @@ class ProgramOfflineController extends Controller
 
     public function fullPayment($id)
     {
-        $transaction = Transaction::with('user.student')->where('transaction_status', 'paid')->orWhere('transaction_status', 'done')->findOrfail($id);
-
+        $transaction = Transaction::with('user.student')->where('transaction_status', 'paid')->findOrfail($id);
+       
         return view('front.program-offline.full-payment', compact('transaction'));
     }
 

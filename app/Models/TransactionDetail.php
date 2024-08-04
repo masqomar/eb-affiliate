@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class TransactionDetail extends Model
 {
-    use HasFactory;
+    use HasFactory, Uuid;
+    public $incrementing = false;
+    protected $keyType = 'string';
 
     /**
      * The table associated with the model.

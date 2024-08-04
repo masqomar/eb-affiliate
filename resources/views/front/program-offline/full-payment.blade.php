@@ -53,7 +53,7 @@
 
                                 <li>
                                     <div class="course__summery__item">
-                                        <span class="sb_label">Periode</span><span class="sb_content">{{ $transaction->program->period->period_date }}</span>
+                                        <span class="sb_label">Periode</span><span class="sb_content">{{ $transaction->period }}</span>
                                     </div>
                                 </li>
 
@@ -131,24 +131,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-
-@section('js')
-<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
-<script type="text/javascript">
-    document.getElementById('pay-button').onclick = function() {
-        snap.pay('{{$transaction->snap_token}}', {
-            onSuccess: function(result) {
-                window.location.href = '{{ route("front.program-offline.payment-success", $transaction->id)}}';
-            },
-            onPending: function(result) {
-                document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-            },
-            onError: function(result) {
-                document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
-            }
-        });
-    };
-</script>
 @endsection

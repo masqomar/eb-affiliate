@@ -77,11 +77,6 @@ class Transaction extends Model
         return empty($value) ? '-' : dateFormat($value, 'd F Y');
     }
 
-    public function getMaximumPaymentTimeAttribute($value)
-    {
-        return dateFormat($value, 'd F Y H:i');
-    }
-
     public function getCreatedAtAttribute($value)
     {
         return dateFormat($value, 'd F Y H:i');
