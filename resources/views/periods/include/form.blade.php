@@ -2,7 +2,7 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="period-date">{{ __('Period Date') }}</label>
-            <input type="date" name="period_date" id="period-date" class="form-control @error('period_date') is-invalid @enderror" value="{{ isset($period) && $period->period_date ? $period->period_date->format('Y-m-d') : old('period_date') }}" placeholder="{{ __('Period Date') }}" required />
+            <input type="date" name="period_date" id="period-date" class="form-control @error('period_date') is-invalid @enderror" value="{{ isset($period) && $period->period_date ? $period->period_date : old('period_date') }}" placeholder="{{ __('Period Date') }}" required />
             @error('period_date')
                 <span class="text-danger">
                     {{ $message }}
