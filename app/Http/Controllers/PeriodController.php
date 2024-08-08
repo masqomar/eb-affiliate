@@ -29,6 +29,12 @@ class PeriodController extends Controller
             return DataTables::of($periods)
                 ->addColumn('category', function ($row) {
                     return $row->category ? $row->category->name : '';
+                }) ->addColumn('is_active', function ($row) {
+                    if ($row->is_active) {
+                        return 'Aktif';
+                    } else {
+                        return 'Tidak Aktif';
+                    }
                 })->addColumn('action', 'periods.include.action')
                 ->toJson();
         }

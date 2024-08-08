@@ -155,7 +155,7 @@ class ProgramController extends Controller
      */
     public function update(UpdateProgramRequest $request, Program $program)
     {
-        $attr = $request->validated();
+        $program->periods()->sync($request->periods);        
 
         if ($request->file('image') && $request->file('image')->isValid()) {
 
@@ -176,10 +176,10 @@ class ProgramController extends Controller
                 unlink($path . $program->image);
             }
 
-            $attr['image'] = $filename;
+            $program['image'] = $filename;
+           
         }
-
-        $program->update($attr);
+        $program->update();
 
         return redirect()
             ->route('programs.index')

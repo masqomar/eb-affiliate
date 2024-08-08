@@ -10,17 +10,42 @@
             @enderror
         </div>
     </div>
+   
+    
+    @isset($period)
     <div class="col-md-6">
         <div class="form-group">
-            <label for="is-active">{{ __('Is Active') }}</label>
-            <input type="number" name="is_active" id="is-active" class="form-control @error('is_active') is-invalid @enderror" value="{{ isset($period) ? $period->is_active : old('is_active') }}" placeholder="{{ __('Is Active') }}" required />
+            <label for="is-active">{{ __('Status') }}</label>
+            <select class="form-select @error('is_active') is-invalid @enderror"name="is_active" id="is-active" class="form-control" required>
+                <option value="" selected disabled>-- {{ __('Pilihan') }} --</option>
+                <option value="1" @selected(old('$period->is_active') ?? $period->is_active == 1)>Aktif</option>
+                <option value="0" @selected(old('$period->is_active') ?? $period->is_active == 0)>Tidak Aktif</option>
+            </select>
             @error('is_active')
-                <span class="text-danger">
-                    {{ $message }}
-                </span>
+            <span class="text-danger">
+                {{ $message }}
+            </span>
             @enderror
         </div>
     </div>
+    @else
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="is-active">{{ __('Status') }}</label>
+            <select class="form-select @error('is_active') is-invalid @enderror"name="is_active" id="is-active" class="form-control" required>
+                <option value="" selected disabled>-- {{ __('Status') }} --</option>
+                <option value="1">Aktif</option>
+                <option value="0">Tidak Aktif</option>
+            </select>
+            @error('is_active')
+            <span class="text-danger">
+                {{ $message }}
+            </span>
+            @enderror
+        </div>
+    </div>
+    @endisset
+
     <div class="col-md-6">
         <div class="form-group">
             <label for="category-id">{{ __('Category') }}</label>

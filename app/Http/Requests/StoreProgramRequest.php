@@ -30,6 +30,7 @@ class StoreProgramRequest extends FormRequest
             'program_type_id' => 'required|exists:App\Models\ProgramType,id',
             'periods' => 'required|array',
             'periods.*' => 'exists:periods,id',
+            'image' => 'nullable|image|max:2048',
         ];
     }
 }
