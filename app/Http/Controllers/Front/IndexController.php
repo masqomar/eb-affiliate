@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Period;
 use App\Models\PeriodProgram;
 use App\Models\Program;
+use App\Models\Tenant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,11 +17,11 @@ class IndexController extends Controller
         return view('front.index');
     }
 
-    public function daftar()
+    public function daftar(Tenant $tenant)
     {
         $programs = Program::with('period', 'program_type.category')->where('is_active', 1)->get();
-
-        return view('front.daftar', compact('programs'));
+        
+        return view('front.daftar', compact('programs', 'tenant'));
     }
 
     public function getPeriod($program_id)

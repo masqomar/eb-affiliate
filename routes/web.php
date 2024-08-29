@@ -16,9 +16,40 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+// Route::domain('{subdomain}.' . config('app.short_url'))->group(function () {
+//     Route::get('/', function () {
+//         return 'Subsomain Test';
+//     });
+// });
+
+Route::get('/_t', function () {
+    // Response is an array of updates.
+    $updates = \NotificationChannels\Telegram\TelegramUpdates::create()
+        // (Optional). Get's the latest update. NOTE: All previous updates will be forgotten using this method.
+        // ->latest()
+
+        // (Optional). Limit to 2 updates (By default, updates starting with the earliest unconfirmed update are returned).
+        ->limit(2)
+
+        // (Optional). Add more params to the request.
+        ->options([
+            'timeout' => 0,
+        ])
+        ->get();
+
+    dd($updates);
+})->name('test');
+
+Route::domain('{tenant:subdomain}.' . config('app.url'))->name('subdomain.')->group(function () {
+    Route::get('/', [\App\Http\Controllers\Front\SubdomainIndexController::class, 'index'])->name('index');
+    Route::get('/join/{id}', [\App\Http\Controllers\Front\SubdomainIndexController::class, 'registerByAff'])->name('registerByAff');
+    // Route::get('/daftar', [\App\Http\Controllers\Front\IndexController::class, 'daftar'])->name('daftar');
+});
+
+
 
 Route::get('/', [\App\Http\Controllers\Front\IndexController::class, 'index'])->name('index');
-Route::get('/daftar', [\App\Http\Controllers\Front\IndexController::class, 'daftar'])->name('daftar');
+
 
 // Frontend Program Offline
 Route::get('/program-offline', [\App\Http\Controllers\Front\ProgramOfflineController::class, 'index'])->name('front.program-offline.index');
@@ -49,18 +80,21 @@ Route::post('/periode/{program_id}', [\App\Http\Controllers\Front\IndexControlle
 // Dashboard
 Route::middleware(['auth', 'web'])->group(function () {
     // Route::get('/', fn () => view('dashboard'));
-    Route::get('/dashboard', fn () => view('dashboard'));
+    Route::get('/dashboard', fn() => view('dashboard'));
     Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
-    
+
     Route::get('/profile', App\Http\Controllers\ProfileController::class)->name('profile');
 
     Route::resource('users', App\Http\Controllers\UserController::class);
     Route::resource('roles', App\Http\Controllers\RoleAndPermissionController::class);
-});
 
-Route::middleware(['auth', 'permission:test view'])->get('/tests', function () {
-    dd('This is just a test and an example for permission and sidebar menu. You can remove this line on web.php, config/permission.php and config/generator.php');
-})->name('tests.index');
+    // Menu Affiliate
+    Route::get('/aff/register', [\App\Http\Controllers\Affiliate\RegistrationController::class, 'index'])->name('affiliate.register.index');
+    Route::post('/aff/store', [\App\Http\Controllers\Affiliate\RegistrationController::class, 'store'])->name('affiliate.register.store');
+    Route::get('/aff-commissions', [\App\Http\Controllers\Affiliate\CommissionController::class, 'index'])->name('affiliate.commissions.index');
+    Route::get('/commission-history', [\App\Http\Controllers\Affiliate\CommissionController::class, 'detail'])->name('affiliate.commissions.detail');
+
+});
 
 Route::resource('categories', App\Http\Controllers\CategoryController::class)->middleware('auth');
 Route::resource('periods', App\Http\Controllers\PeriodController::class)->middleware('auth');
@@ -79,3 +113,5 @@ Route::resource('grades', App\Http\Controllers\GradeController::class)->middlewa
 Route::resource('transaction-details', App\Http\Controllers\TransactionDetailController::class)->middleware('auth');
 Route::resource('transactions', App\Http\Controllers\TransactionController::class)->middleware('auth');
 Route::resource('students', App\Http\Controllers\StudentController::class)->middleware('auth');
+
+Route::resource('commissions', App\Http\Controllers\CommissionController::class)->middleware('auth');

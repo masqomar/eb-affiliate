@@ -3,6 +3,7 @@
         <div class="dashboard__nav__title">
             <h6>Welcome, {{ auth()->user()->name }}</h6>
         </div>
+
         <div class="dashboard__nav">
             <ul>
                 <li>
@@ -31,9 +32,23 @@
             </ul>
         </div>
 
+        @foreach (config('generator.sidebars') as $sidebar)
+        @if (isset($sidebar['permissions']))
+        @canany($sidebar['permissions'])
+
+
         <div class="dashboard__nav__title mt-40">
             <h6>Master Program</h6>
         </div>
+
+        @foreach ($sidebar['menus'] as $menu)
+        @php
+        $permissions = empty($menu['permission']) ? $menu['permissions'] : [$menu['permission']];
+        @endphp
+
+        @canany($permissions)
+        @if (empty($menu['submenus']))
+        @can($menu['permission'])
 
         <div class="dashboard__nav">
             <ul>
@@ -97,7 +112,8 @@
 
             </ul>
         </div>
-
+        @endcan
+        @else
         <div class="dashboard__nav__title mt-40">
             <h6>User</h6>
         </div>
@@ -135,6 +151,13 @@
 
             </ul>
         </div>
+        @endif
+        @endcanany
+        @endforeach
+
+        @endcanany
+        @endif
+        @endforeach
 
         @if (env('APP_ENV') === 'local')
         <div class="dashboard__nav__title mt-40">
@@ -155,6 +178,52 @@
                         {{ __('CRUD Generator') }}</a>
                 </li>
                 @endif
+            </ul>
+        </div>
+
+        <div class="dashboard__nav__title mt-40">
+            <h6>Komisi</h6>
+        </div>
+
+        <div class="dashboard__nav">
+            <ul>
+                <li>
+                    <a class="{{ request()->is('/aff-commissions') || request()->is('aff-commissions') ? ' active' : '' }}" href="/aff-commissions">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-volume-1">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        </svg>
+                        {{ __('Komisi') }}</a>
+
+                </li>
+                <li>
+                    <a class="{{ request()->is('/commission-history') || request()->is('commission-history') ? ' active' : '' }}" href="/commission-history">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-volume-1">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        </svg>
+                        {{ __('Withdraw') }}</a>
+
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="dashboard__nav__title mt-40">
+            <h6>Pengaturan</h6>
+        </div>
+
+        <div class="dashboard__nav">
+            <ul>
+                <li>
+                    <a class="{{ request()->is('/profile') || request()->is('profile') ? ' active' : '' }}" href="/profile">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-volume-1">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                        </svg>
+                        {{ __('Profil') }}</a>
+
+                </li>
 
                 <li>
                     <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
@@ -172,6 +241,6 @@
             </ul>
         </div>
 
-
+        
     </div>
 </div>

@@ -290,7 +290,8 @@ return [
         'header' => 'Transaction Details',
         'permissions' => [
             'transaction detail view',
-            'transaction view'
+            'transaction view',
+            'commission view'
         ],
         'menus' => [
             [
@@ -306,6 +307,14 @@ return [
                 'icon' => '<i class="bi bi-people"></i>',
                 'route' => '/transactions',
                 'permission' => 'transaction view',
+                'permissions' => [],
+                'submenus' => []
+            ],
+            [
+                'title' => 'Commissions',
+                'icon' => '<i class="bi bi-people"></i>',
+                'route' => '/commissions',
+                'permission' => 'commission view',
                 'permissions' => [],
                 'submenus' => []
             ]

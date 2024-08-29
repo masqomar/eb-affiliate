@@ -25,7 +25,7 @@ class Transaction extends Model
      *
      * @var string[]
      */
-    protected $fillable = ['user_id', 'exam_id', 'code', 'voucher_activated', 'voucher_used', 'total_purchases', 'maximum_payment_time', 'transaction_status', 'voucher_token', 'invoice', 'program_id', 'snap_token', 'program_date', 'program_time', 'note', 'discount', 'admin_fee', 'down_payment', 'period'];
+    protected $fillable = ['user_id', 'exam_id', 'code', 'voucher_activated', 'voucher_used', 'total_purchases', 'maximum_payment_time', 'transaction_status', 'voucher_token', 'invoice', 'program_id', 'snap_token', 'program_date', 'program_time', 'note', 'discount', 'admin_fee', 'down_payment', 'period', 'aff_id'];
 
     /**
      * The attributes that should be cast.

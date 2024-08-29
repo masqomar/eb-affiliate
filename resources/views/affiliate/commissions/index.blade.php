@@ -59,69 +59,7 @@
                         <div class="dashboard__section__title">
                             <h4>Dashboard</h4>
                         </div>
-                        <div class="row mb-3">
-                            @if ($affId == true)
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                                <p>Link Affiliate kamu adalah <strong> <a href="{{ url($affId->subdomain_link) }}" target="_blank">{{ $affId->subdomain_link }}</a> </strong></p>
-                            </div>
-                            @else
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-12">
-                                <a href="{{ route('affiliate.register.index') }}">Klik disini</a> untuk melengkapi form pendaftaran akun affiliatemu.
-                            </div>
-                            @endif
-                        </div>
-                        <!-- <div class="row">
-                            <div class="col-xl-4 col-lg-6 col-md-12 col-12">
-                                <div class="dashboard__single__counter">
-                                    <div class="counterarea__text__wraper">
-                                        <div class="counter__img">
-                                            <img loading="lazy" src="{{ asset('template') }}/front/img/counter/counter__1.png" alt="counter">
-                                        </div>
-                                        <div class="counter__content__wraper">
-                                            <div class="counter__number">
-                                                <span class="counter">900</span>+
-
-                                            </div>
-                                            <p>Enrolled Courses</p>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-12 col-12">
-                                <div class="dashboard__single__counter">
-                                    <div class="counterarea__text__wraper">
-                                        <div class="counter__img">
-                                            <img loading="lazy" src="{{ asset('template') }}/front/img/counter/counter__2.png" alt="counter">
-                                        </div>
-                                        <div class="counter__content__wraper">
-                                            <div class="counter__number">
-                                                <span class="counter">{{ $activeUsers }}</span>+
-
-                                            </div>
-                                            <p>Active Courses</p>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-12 col-12">
-                                <div class="dashboard__single__counter">
-                                    <div class="counterarea__text__wraper">
-                                        <div class="counter__img">
-                                            <img loading="lazy" src="{{ asset('template') }}/front/img/counter/counter__3.png" alt="counter">
-                                        </div>
-                                        <div class="counter__content__wraper">
-                                            <div class="counter__number">
-                                                <span class="counter">300</span>k
-
-                                            </div>
-                                            <p>Complete Courses</p>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="row">
                             <div class="col-xl-4 col-lg-6 col-md-12 col-12">
                                 <div class="dashboard__single__counter">
                                     <div class="counterarea__text__wraper">
@@ -130,10 +68,10 @@
                                         </div>
                                         <div class="counter__content__wraper">
                                             <div class="counter__number">
-                                                <span class="counter">{{ $totalPrograms }}</span>+
+                                                <span class="counter">{{ $totalVisitCount}}</span>
 
                                             </div>
-                                            <p>Total Courses</p>
+                                            <p>Total Clicks</p>
 
                                         </div>
                                     </div>
@@ -151,7 +89,7 @@
                                                 <span class="counter">30</span>k
 
                                             </div>
-                                            <p>Total Students</p>
+                                            <p>Total Referal</p>
 
                                         </div>
                                     </div>
@@ -160,9 +98,6 @@
                             <div class="col-xl-4 col-lg-6 col-md-12 col-12">
                                 <div class="dashboard__single__counter">
                                     <div class="counterarea__text__wraper">
-                                        <div class="counter__img">
-                                            <img loading="lazy" src="{{ asset('template') }}/front/img/counter/counter__4.png" alt="counter">
-                                        </div>
                                         <div class="counter__content__wraper">
                                             <div class="counter__number">
                                                 <span class="counter">90,000</span>K+
@@ -174,7 +109,88 @@
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
+
+                        <div class="course__details__tab__wrapper" data-aos="fade-up">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <ul class="nav  course__tap__wrap" id="myTab" role="tablist">
+
+                                        <li class="nav-item" role="presentation">
+                                            <button class="single__tab__link active" data-bs-toggle="tab" data-bs-target="#projects__two" type="button"><i class="icofont-book-alt"></i>History Kunjungan</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="single__tab__link" data-bs-toggle="tab" data-bs-target="#projects__one" type="button"><i class="icofont-paper"></i>History Referal</button>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tab-content tab__content__wrapper" id="myTabContent">
+                                <div class="tab-pane fade  active show" id="projects__two" role="tabpanel" aria-labelledby="projects__two">
+
+                                    <div class="col-xl-12">
+                                        <div class="dashboard__table table-responsive">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>{{ __('No') }}</th>
+                                                        <th>{{ __('IP') }}</th>
+                                                        <th>{{ __('Tanggal') }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($historyVisit['visits'] as $visit)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $visit['data']['ip'] }}</td>
+                                                        <td>{{ $visit['created_at']->format('d-m-Y H:i') }}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="tab-pane fade" id="projects__one" role="tabpanel" aria-labelledby="projects__one">
+                                    
+                                    <div class="col-xl-12">
+                                        <div class="dashboard__table table-responsive">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>{{ __('No') }}</th>
+                                                        <th>{{ __('Kode') }}</th>
+                                                        <th>{{ __('Nama') }}</th>
+                                                        <th>{{ __('Program') }}</th>
+                                                        <th>{{ __('Biaya') }}</th>
+                                                        <th>{{ __('Pembayaran') }}</th>
+                                                        <th>{{ __('Status') }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach($historyReferal['transactions'] as $transaction)
+                                                    <tr>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ $transaction['code'] }}</td>
+                                                        <td>{{ $transaction['user']['name'] }}</td>
+                                                        <td>{{ $transaction['program']['name'] }}</td>
+                                                        <td>Rp. {{ number_format($transaction['program']['price'], 0, ',', '.') }}</td>
+                                                        <td>Rp. {{ number_format($transaction['down_payment'], 0, ',', '.') }}</td>
+                                                        <td>{{ $transaction['transaction_status'] }}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
 

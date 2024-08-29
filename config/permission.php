@@ -197,5 +197,5 @@ return [
         ['group' => 'transaction details', 'access' => ['transaction detail view', 'transaction detail create', 'transaction detail edit', 'transaction detail delete']],
         ['group' => 'transactions', 'access' => ['transaction view', 'transaction create', 'transaction edit', 'transaction delete']],
         ['group' => 'students', 'access' => ['student view', 'student create', 'student edit', 'student delete']],
-    ],
-];
+  ['group' => 'commissions', 'access' => ['commission view', 'commission create', 'commission edit', 'commission delete']], 
+		],];

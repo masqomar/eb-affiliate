@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use App\Notifications\SendNewAffiliatorNotification;
 
 class CreateNewUser implements CreatesNewUsers
 {
@@ -32,10 +33,23 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
-        return User::create([
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'level' => 3,
+            'is_active' => 0
         ]);
+        $admin = User::find('20b2a4122c614bb68e41b1a6f3f37780');
+        $admin->notify(new SendNewAffiliatorNotification($user));
+
+        return $user;
     }
+
+    // public function setAttributeNames(array $attributes)
+    // {
+    //     $this->customAttributes = $attributes;
+
+    //     return $this;
+    // }
 }

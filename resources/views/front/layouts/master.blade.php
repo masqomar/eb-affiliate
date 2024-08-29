@@ -39,15 +39,7 @@
 
 
 <body class="body__wrapper">
-    <!-- pre loader area start -->
-    <div id="back__preloader">
-        <div id="back__circle_loader"></div>
-        <div class="back__loader_logo">
-            <img loading="lazy" src="{{ asset('template') }}/front/img/pre.png" alt="Preload">
-        </div>
-    </div>
-    </div>
-    <!-- pre loader area end -->
+  
 
     <!-- Dark/Light area start -->
     <div class="mode_switcher my_switcher">

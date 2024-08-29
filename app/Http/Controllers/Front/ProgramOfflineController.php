@@ -28,7 +28,7 @@ class ProgramOfflineController extends Controller
 
     public function index()
     {
-        $programTypes = ProgramType::with('category')->get();
+        $programTypes = ProgramType::with('category')->select('id', 'name', 'category_id')->get();
         $programs = Program::where('is_active', 1)->with('program_type.category')->get();
 
         return view('front.program-offline.index', compact('programTypes', 'programs'));
@@ -72,7 +72,7 @@ class ProgramOfflineController extends Controller
 
             $program = Program::where('id', $request->program_id)->first();
             $periode = Period::where('id', $request->period_id)->first();
-            $admin_fee = 99285;
+            $admin_fee = 0;
             $programPrice = $program->price;
 
             if ($request->coupon_code != null) {
@@ -91,7 +91,8 @@ class ProgramOfflineController extends Controller
                     'discount' => $discount,
                     'admin_fee' => $admin_fee,
                     'down_payment' => $downPayment,
-                    'period' => $periode->period_date
+                    'period' => $periode->period_date,
+                    'aff_id' => $request->aff_id
                 ]);
 
                 $payload = [
@@ -135,7 +136,8 @@ class ProgramOfflineController extends Controller
                     'discount' => 0,
                     'admin_fee' => $admin_fee,
                     'down_payment' => $dp,
-                    'period' => $periode->period_date
+                    'period' => $periode->period_date,
+                    'aff_id' => $request->aff_id
                 ]);
 
                 $payload = [
