@@ -16,7 +16,7 @@
                 <h4>Hi 👋, {{ auth()->user()->name }}</h4>
                 <p>Selamat datang kembali!</p>
                 @if ($affId == true)
-                <p>Link Affiliate kamu adalah <strong> <a href="{{ url($affId->subdomain_link) }}" target="_blank">{{ $affId->subdomain_link }}</a> </strong></p>
+                <p>Link Affiliate kamu adalah <strong> {{ $affId->subdomain_link }} </strong></p>
                 @else
                 <a href="{{ route('affiliate.register.index') }}">Klik disini</a> untuk melengkapi form pendaftaran akun affiliatemu.
                 @endif
