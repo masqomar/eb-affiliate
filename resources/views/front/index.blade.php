@@ -25,7 +25,7 @@
 
                 <div class="mt-16">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                        <a href="https://laravel.com/docs" class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
+                        <a href="https://kampunginggrisbooster.com/program-offline/" class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                             <div>
                                 <div class="h-16 w-16 bg-red-50 dark:bg-red-800/20 flex items-center justify-center rounded-full">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-7 h-7 stroke-red-500">
@@ -36,7 +36,7 @@
                                 <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Offline Programs</h2>
 
                                 <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Laravel has wonderful documentation covering every aspect of the framework. Whether you are a newcomer or have prior experience with Laravel, we recommend reading our documentation from beginning to end.
+                                "Offline Programs Kampung Inggris Booster" adalah program pelatihan bahasa Inggris intensif yang diselenggarakan di Kampung Inggris, Pare, Indonesia. Program ini menawarkan pembelajaran langsung di kelas dengan fokus pada peningkatan kemampuan berbicara, mendengarkan, membaca, dan menulis dalam bahasa Inggris. Dengan metode pengajaran yang interaktif dan praktis, peserta didorong untuk berlatih secara aktif dalam situasi sehari-hari. Program ini cocok untuk individu yang ingin mempercepat kemampuan bahasa Inggris mereka dalam waktu singkat, dengan lingkungan yang mendukung dan komunitas yang bersemangat belajar.
                                 </p>
                             </div>
 
@@ -45,7 +45,7 @@
                             </svg>
                         </a>
 
-                        <a href="https://laracasts.com" class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
+                        <a href="https://kampunginggrisbooster.com/program-online/" class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                             <div>
                                 <div class="h-16 w-16 bg-red-50 dark:bg-red-800/20 flex items-center justify-center rounded-full">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-7 h-7 stroke-red-500">
@@ -56,7 +56,7 @@
                                 <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Online Programs</h2>
 
                                 <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Laracasts offers thousands of video tutorials on Laravel, PHP, and JavaScript development. Check them out, see for yourself, and massively level up your development skills in the process.
+                                "Online Programs Kampung Inggris Booster" adalah program pembelajaran bahasa Inggris yang dapat diikuti secara daring, dirancang untuk mereka yang tidak dapat datang langsung ke Kampung Inggris, Pare. Program ini menawarkan berbagai kelas interaktif melalui platform online, dengan fokus pada peningkatan kemampuan berbicara, mendengarkan, membaca, dan menulis dalam bahasa Inggris. Dengan menggunakan teknologi video conference, peserta dapat berinteraksi langsung dengan pengajar berpengalaman dan sesama peserta dari berbagai lokasi. Program ini fleksibel dan dapat disesuaikan dengan jadwal peserta, memungkinkan pembelajaran yang efektif dan efisien dari mana saja.
                                 </p>
                             </div>
 
@@ -65,7 +65,7 @@
                             </svg>
                         </a>
 
-                        <a href="https://laravel-news.com" class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
+                        <a href="https://kampunginggrisbooster.com/program-offline/" class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                             <div>
                                 <div class="h-16 w-16 bg-red-50 dark:bg-red-800/20 flex items-center justify-center rounded-full">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="w-7 h-7 stroke-red-500">
@@ -76,7 +76,7 @@
                                 <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Partial Programs</h2>
 
                                 <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Laravel News is a community driven portal and newsletter aggregating all of the latest and most important news in the Laravel ecosystem, including new package releases and tutorials.
+                                "Partial Programs Kampung Inggris Booster" adalah program pembelajaran bahasa Inggris yang dirancang untuk peserta yang ingin meningkatkan keterampilan bahasa mereka dengan cara yang fleksibel dan tidak terlalu intensif. Program ini memungkinkan peserta untuk memilih modul atau kelas tertentu yang sesuai dengan kebutuhan dan minat mereka, seperti kelas percakapan, tata bahasa, atau mendengarkan. Dengan durasi dan jadwal yang lebih singkat dibandingkan program penuh, "Partial Programs" cocok untuk individu yang memiliki keterbatasan waktu namun tetap ingin meningkatkan kemampuan bahasa Inggris mereka. Program ini dapat diikuti secara offline di Kampung Inggris atau melalui platform online, memberikan fleksibilitas dalam metode pembelajaran.
                                 </p>
                             </div>
 
@@ -96,9 +96,12 @@
                                 <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Test Preparations</h2>
 
                                 <p class="mt-4 text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                                    Laravel's robust library of first-party tools and libraries, such as <a href="https://forge.laravel.com" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Forge</a>, <a href="https://vapor.laravel.com" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Vapor</a>, <a href="https://nova.laravel.com" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Nova</a>, and <a href="https://envoyer.io" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Envoyer</a> help you take your projects to the next level. Pair them with powerful open source libraries like <a href="https://laravel.com/docs/billing" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Cashier</a>, <a href="https://laravel.com/docs/dusk" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dusk</a>, <a href="https://laravel.com/docs/broadcasting" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Echo</a>, <a href="https://laravel.com/docs/horizon" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Horizon</a>, <a href="https://laravel.com/docs/sanctum" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Sanctum</a>, <a href="https://laravel.com/docs/telescope" class="underline hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Telescope</a>, and more.
+                                "Test Preparations Kampung Inggris Booster" adalah program khusus yang dirancang untuk membantu peserta mempersiapkan diri menghadapi berbagai tes kemampuan bahasa Inggris, seperti TOEFL, IELTS, TOEIC, dan tes bahasa Inggris lainnya. Program ini menawarkan materi pembelajaran yang terstruktur dan fokus pada strategi serta teknik khusus untuk menghadapi setiap bagian dari tes, termasuk listening, reading, writing, dan speaking. Dengan bimbingan dari pengajar yang berpengalaman dan simulasi ujian secara rutin, peserta dapat memahami format tes, meningkatkan skor mereka, dan merasa lebih percaya diri saat mengikuti ujian. Program ini tersedia baik secara offline di Kampung Inggris maupun online, memberikan fleksibilitas sesuai dengan kebutuhan peserta.
                                 </p>
                             </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="self-center shrink-0 stroke-red-500 w-6 h-6 mx-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+                            </svg>
                         </div>
                     </div>
                 </div>
