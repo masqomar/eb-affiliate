@@ -1,204 +1,177 @@
-@extends('front.layouts.master')
+@extends('layouts.app')
 
 @section('title', __('Dashboard'))
 
 @section('content')
-<!-- dashboardarea__area__start  -->
-<div class="dashboardarea sp_bottom_100">
-    <div class="container-fluid full__width__padding">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="dashboardarea__wraper">
-                    <div class="dashboardarea__img">
-                        <div class="dashboardarea__inner admin__dashboard__inner">
-                            <div class="dashboardarea__left">
-                                <div class="dashboardarea__left__img">
-                                    <img loading="lazy" src="{{ asset('template') }}/front/img/dashbord/dashbord__2.jpg" alt="">
-                                </div>
-                                <div class="dashboardarea__left__content">
-                                    <h5>Hi 👋, {{ auth()->user()->name }}</h5>
-                                    <h4>{{ __('Selamat datang kembali!') }}</h4>
-                                </div>
-                            </div>
-                            <div class="dashboardarea__star">
-                                <i class="icofont-star"></i>
-                                <i class="icofont-star"></i>
-                                <i class="icofont-star"></i>
-                                <i class="icofont-star"></i>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
-                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                    </polygon>
-                                </svg>
-                                <span>4.0 (120 Reviews)</span>
-                            </div>
-                            <div class="dashboardarea__right">
-                                <div class="dashboardarea__right__button">
-                                    <a class="default__button" href="create-course.html">Create a New Course
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right">
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                            <polyline points="12 5 19 12 12 19"></polyline>
-                                        </svg></a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="breadcrumb-with-buttons mb-24 flex-between flex-wrap gap-8">
+    <div class="breadcrumb mb-24">
     </div>
 
-    <div class="dashboard">
-        <div class="container-fluid full__width__padding">
-            <div class="row">
-
-                @include('front.layouts.partials.dashboardNav')
-
-                <div class="col-xl-9 col-lg-9 col-md-12">
-                    <div class="dashboard__content__wraper">
-                        <div class="dashboard__section__title">
-                            <h4>Dashboard</h4>
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-4 col-lg-6 col-md-12 col-12">
-                                <div class="dashboard__single__counter">
-                                    <div class="counterarea__text__wraper">
-                                        <div class="counter__img">
-                                            <img loading="lazy" src="{{ asset('template') }}/front/img/counter/counter__4.png" alt="counter">
-                                        </div>
-                                        <div class="counter__content__wraper">
-                                            <div class="counter__number">
-                                                <span class="counter">{{ $totalVisitCount}}</span>
-
-                                            </div>
-                                            <p>Total Clicks</p>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-4 col-lg-6 col-md-12 col-12">
-                                <div class="dashboard__single__counter">
-                                    <div class="counterarea__text__wraper">
-                                        <div class="counter__img">
-                                            <img loading="lazy" src="{{ asset('template') }}/front/img/counter/counter__3.png" alt="counter">
-                                        </div>
-                                        <div class="counter__content__wraper">
-                                            <div class="counter__number">
-                                                <span class="counter">30</span>k
-
-                                            </div>
-                                            <p>Total Referal</p>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-6 col-md-12 col-12">
-                                <div class="dashboard__single__counter">
-                                    <div class="counterarea__text__wraper">
-                                        <div class="counter__content__wraper">
-                                            <div class="counter__number">
-                                                <span class="counter">90,000</span>K+
-
-                                            </div>
-                                            <p>Total Earning</p>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="course__details__tab__wrapper" data-aos="fade-up">
-                            <div class="row">
-                                <div class="col-xl-12">
-                                    <ul class="nav  course__tap__wrap" id="myTab" role="tablist">
-
-                                        <li class="nav-item" role="presentation">
-                                            <button class="single__tab__link active" data-bs-toggle="tab" data-bs-target="#projects__two" type="button"><i class="icofont-book-alt"></i>History Kunjungan</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="single__tab__link" data-bs-toggle="tab" data-bs-target="#projects__one" type="button"><i class="icofont-paper"></i>History Referal</button>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="tab-content tab__content__wrapper" id="myTabContent">
-                                <div class="tab-pane fade  active show" id="projects__two" role="tabpanel" aria-labelledby="projects__two">
-
-                                    <div class="col-xl-12">
-                                        <div class="dashboard__table table-responsive">
-                                            <table>
-                                                <thead>
-                                                    <tr>
-                                                        <th>{{ __('No') }}</th>
-                                                        <th>{{ __('IP') }}</th>
-                                                        <th>{{ __('Tanggal') }}</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach($historyVisit['visits'] as $visit)
-                                                    <tr>
-                                                        <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $visit['data']['ip'] }}</td>
-                                                        <td>{{ $visit['created_at']->format('d-m-Y H:i') }}</td>
-                                                    </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="tab-pane fade" id="projects__one" role="tabpanel" aria-labelledby="projects__one">
-                                    
-                                    <div class="col-xl-12">
-                                        <div class="dashboard__table table-responsive">
-                                            <table>
-                                                <thead>
-                                                    <tr>
-                                                        <th>{{ __('No') }}</th>
-                                                        <th>{{ __('Kode') }}</th>
-                                                        <th>{{ __('Nama') }}</th>
-                                                        <th>{{ __('Program') }}</th>
-                                                        <th>{{ __('Biaya') }}</th>
-                                                        <th>{{ __('Pembayaran') }}</th>
-                                                        <th>{{ __('Status') }}</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach($historyReferal['transactions'] as $transaction)
-                                                    <tr>
-                                                        <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $transaction['code'] }}</td>
-                                                        <td>{{ $transaction['user']['name'] }}</td>
-                                                        <td>{{ $transaction['program']['name'] }}</td>
-                                                        <td>Rp. {{ number_format($transaction['program']['price'], 0, ',', '.') }}</td>
-                                                        <td>Rp. {{ number_format($transaction['down_payment'], 0, ',', '.') }}</td>
-                                                        <td>{{ $transaction['transaction_status'] }}</td>
-                                                    </tr>
-                                                    @endforeach
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
+    <div class="flex-align gap-8 flex-wrap">
+        <div class="position-relative text-gray-500 flex-align gap-4 text-13">
+            <span class="text-inherit">Sort by: </span>
+            <div
+                class="flex-align text-gray-500 text-13 border border-gray-100 rounded-4 ps-20 focus-border-main-600 bg-white">
+                <span class="text-lg"><i class="ph ph-funnel-simple"></i></span>
+                <select class="form-control ps-8 pe-20 py-16 border-0 text-inherit rounded-4 text-center">
+                    <option value="1" selected>Popular</option>
+                    <option value="1">Latest</option>
+                    <option value="1">Trending</option>
+                    <option value="1">Matches</option>
+                </select>
             </div>
+        </div>
+        <div
+            class="flex-align text-gray-500 text-13 border border-gray-100 rounded-4 ps-20 focus-border-main-600 bg-white">
+            <span class="text-lg"><i class="ph ph-layout"></i></span>
+            <select class="form-control ps-8 pe-20 py-16 border-0 text-inherit rounded-4 text-center"
+                id="exportOptions">
+                <option value="" selected disabled>Export</option>
+                <option value="csv">CSV</option>
+                <option value="json">JSON</option>
+            </select>
         </div>
     </div>
 
 </div>
-<!-- dashboardarea__area__end   -->
+
+
+<div class="card overflow-hidden">
+    <div class="card-body p-0">
+        <table id="assignmentTable" class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="h6 text-gray-300">No</th>
+                    <th class="h6 text-gray-300">IP</th>
+                    <th class="h6 text-gray-300">Tanggal</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($historyVisit['visits'] as $visit)
+                <tr>
+                    <td>
+                        <span class="h6 mb-0 fw-medium text-gray-300">{{ $loop->iteration }}</span>
+                    </td>
+                    <td>
+                        <span
+                            class="text-13 py-2 px-8 bg-teal-50 text-teal-600 d-inline-flex align-items-center gap-8 rounded-pill">
+                            <span class="w-6 h-6 bg-teal-600 rounded-circle flex-shrink-0"></span>
+                            {{ $visit['data']['ip'] }}
+                        </span>
+                    </td>
+                    <td>
+                        <a href="#"
+                            class="bg-main-50 text-main-600 py-2 px-14 rounded-pill hover-bg-main-600 hover-text-white">{{ $visit['created_at']->format('d-m-Y H:i') }}</a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer flex-between flex-wrap">
+        <span class="text-gray-900">Showing 1 to 10 of 12 entries</span>
+        <ul class="pagination flex-align flex-wrap">
+            <li class="page-item active">
+                <a class="page-link h-44 w-44 flex-center text-15 rounded-8 fw-medium" href="#">1</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link h-44 w-44 flex-center text-15 rounded-8 fw-medium" href="#">2</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link h-44 w-44 flex-center text-15 rounded-8 fw-medium" href="#">3</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link h-44 w-44 flex-center text-15 rounded-8 fw-medium" href="#">...</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link h-44 w-44 flex-center text-15 rounded-8 fw-medium" href="#">8</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link h-44 w-44 flex-center text-15 rounded-8 fw-medium" href="#">9</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link h-44 w-44 flex-center text-15 rounded-8 fw-medium" href="#">10</a>
+            </li>
+        </ul>
+    </div>
+</div>
 @endsection
+
+@push('js')
+<script>
+    // ========================== Export Js Start ==============================
+    document.getElementById('exportOptions').addEventListener('change', function() {
+        const format = this.value;
+        const table = document.getElementById('assignmentTable');
+        let data = [];
+        const headers = [];
+
+        // Get the table headers
+        table.querySelectorAll('thead th').forEach(th => {
+            headers.push(th.innerText.trim());
+        });
+
+        // Get the table rows
+        table.querySelectorAll('tbody tr').forEach(tr => {
+            const row = {};
+            tr.querySelectorAll('td').forEach((td, index) => {
+                row[headers[index]] = td.innerText.trim();
+            });
+            data.push(row);
+        });
+
+        if (format === 'csv') {
+            downloadCSV(data);
+        } else if (format === 'json') {
+            downloadJSON(data);
+        }
+    });
+
+    function downloadCSV(data) {
+        const csv = data.map(row => Object.values(row).join(',')).join('\n');
+        const blob = new Blob([csv], {
+            type: 'text/csv'
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'commisions.csv';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+
+    function downloadJSON(data) {
+        const json = JSON.stringify(data, null, 2);
+        const blob = new Blob([json], {
+            type: 'application/json'
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'commisions.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+    // ========================== Export Js End ==============================
+
+    // Table Header Checkbox checked all js Start
+    $('#selectAll').on('change', function() {
+        $('.form-check .form-check-input').prop('checked', $(this).prop('checked'));
+    });
+
+    // Data Tables
+    new DataTable('#assignmentTable', {
+        searching: false,
+        lengthChange: false,
+        info: false, // Bottom Left Text => Showing 1 to 10 of 12 entries
+        paging: false,
+        "columnDefs": [{
+                "orderable": false,
+                "targets": [0, 6]
+            } // Disables sorting on the 7th column (index 6)
+        ]
+    });
+</script>
+@endpush

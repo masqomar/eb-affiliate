@@ -45,11 +45,4 @@ class CreateNewUser implements CreatesNewUsers
 
         return $user;
     }
-
-    // public function setAttributeNames(array $attributes)
-    // {
-    //     $this->customAttributes = $attributes;
-
-    //     return $this;
-    // }
 }

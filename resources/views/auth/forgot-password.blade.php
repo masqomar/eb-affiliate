@@ -1,25 +1,20 @@
 @extends('layouts.auth')
 
-@section('title', __('Forgot Password'))
-
-@push('css')
-    <link rel="stylesheet" href="{{ asset('mazer') }}/css/pages/auth.css">
-@endpush
+@section('title', __('Lupa Password'))
 
 @section('content')
-    <div class="row h-100">
-        <div class="col-lg-7 col-12">
-            <div id="auth-left">
-                <div class="auth-logo" class="mb-0">
-                    <a href="/"><img src="{{ asset('mazer') }}/images/logo/logo.svg" alt="Logo"></a>
-                </div>
+<div class="auth-left bg-main-50 flex-center p-24">
+<img src="{{ asset('assets') }}/images/thumbs/login.png" alt="Kampung Inggris Booster Meeting Room">
+</div>
+<div class="auth-right py-40 px-24 flex-center flex-column">
+    <div class="auth-right__inner mx-auto w-100">
+        <a href="index.html" class="auth-right__logo">
+            <img src="{{ asset('assets') }}/images/logo/Kampung-inggris-booster-logo-landscape.png" alt="Kampung Inggris Booster Logo">
+        </a>
+        <h2 class="mb-8">Lupa Password</h2>
+        <p class="text-gray-600 text-15 mb-32">Enter your email and we'll send your a link to reset your password.</p>
 
-                <h1 class="auth-title">{{ __('Forgot Password.') }}</h1>
-
-                <p class="auth-subtitle mb-3">
-                    {{ __('Enter your email and we\'ll send your a link to reset your password.') }}</p>
-
-                @if ($errors->any())
+        @if ($errors->any())
                     <div class="alert alert-danger alert-dismissible show fade">
                         <ul class="ms-0 mb-0">
                             @foreach ($errors->all() as $error)
@@ -41,37 +36,22 @@
 
                 <form method="POST" action="{{ route('password.email') }}">
                     @csrf
-
-                    <div class="form-group position-relative has-icon-left mb-4">
-                        <input type="email" class="form-control form-control-xl @error('email') is-invalid @enderror"
-                            placeholder="{{ __('E-Mail Address') }}" name="email" required autocomplete="current-email">
-                        <div class="form-control-icon">
-                            <i class="bi bi-person"></i>
-                        </div>
-                    </div>
-
-                    <button
-                        class="btn btn-primary btn-block btn-lg shadow-lg mt-3">{{ __('Send Password Reset Link') }}</button>
-                </form>
-
-                <div class="text-center mt-4 text-lg fs-4">
-                    <p class="text-gray-600">{{ __("Don't have an account") }}?
-                        <a href="/register" class="font-bold">
-                            {{ __('Sign up.') }}
-                        </a>
-                    </p>
-
-                    <p class="text-gray-600">{{ __('Already have an account') }}?
-                        <a href="/login" class="font-bold">{{ __('Log in.') }}</a>
-                    </p>
+                
+            <div class="mb-24">
+                <label for="email" class="form-label mb-8 h6">Email </label>
+                <div class="position-relative">
+                    <input type="email" name="email" class="form-control py-11 ps-40  @error('email') is-invalid @enderror" id="email" placeholder="Email Aktif" value="{{ old('email') }}">
+                    <span class="position-absolute top-50 translate-middle-y ms-16 text-gray-600 d-flex"><i class="ph ph-envelope"></i></span>
                 </div>
             </div>
-        </div>
 
-        <div class="col-lg-5 d-none d-lg-block">
-            <div id="auth-right">
-            </div>
-        </div>
+            <button type="submit" class="btn btn-main rounded-pill w-100">Kirim Link Reset Password</button>
+            <p class="mt-32 text-gray-600 text-center">Sudah punya akun?
+                <a href="/login" class="text-main-600 hover-text-decoration-underline"> Login</a>
+            </p>
+
+        </form>
     </div>
+</div>
 
 @endsection

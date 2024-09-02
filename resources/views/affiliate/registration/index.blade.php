@@ -1,147 +1,123 @@
-@extends('front.layouts.master')
+@extends('layouts.app')
 @section('title', __('Kampung Inggris Booster Affiliate Form'))
 @section('content')
+<div class="card">
+    <div class="card-header border-bottom border-gray-100 flex-align gap-8">
+        <h5 class="mb-0">Form Pembuatan Link Affiliate</h5>
+        <button type="button" class="text-main-600 text-md d-flex" data-bs-toggle="tooltip"
+            data-bs-placement="top" data-bs-title="Form Pembuatan Link Affiliate">
+            <i class="ph-fill ph-question"></i>
+        </button>
+    </div>
 
-<div class="become__instructor sp_100">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="become__instructor__heading">
-                    <h2>Form Pendaftaran Affiliate</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xl-6 col-lg-6 col-md-12 col-12">
-                <div class="become__instructor__text">
-                    <h3 class="become__instructor__small__heading">Become an Instructor</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus blanditiis officiis vero fugiat inventore voluptates sint magnam, accusantium cupiditate odio dolore ipsam ut, corrupti quisquam veritatis pariatur harum labore voluptatibus consectetur dolorem aliquid soluta.</p>
-                    <h3 class="become__instructor__small__heading">Instructor Rules</h3>
-                    <p>Various versions have evolved over the years, sometimes by accident, sometimes on purpose
-                        (injected humour and the like).</p>
-                    <div class="become__instructor__list">
-                        <ul>
-                            <li>
-                                <div class="become__instructor__img">
-                                    <img loading="lazy" src="{{ asset('template') }}/front/img/dashbord/check__1.png" alt="">
-                                </div>
+    <div class="card-body">
 
-                                Basic knowledge and detailed understanding of CSS3 to create.
-                            </li>
-                            <li>
-                                <div class="become__instructor__img">
-                                    <img loading="lazy" src="{{ asset('template') }}/front/img/dashbord/check__1.png" alt="">
-                                </div>
+        <form action="{{ route('affiliate.register.store') }}" method="post">
+            @csrf
 
-                                Details Idea about HTMLS, Creating Basic Web Pages using HTMLS
-                            </li>
-                        </ul>
-                    </div>
-
-                    <h3 class="become__instructor__small__heading">Start With courses</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam facilis inventore tempora maxime quibusdam cumque aperiam? Ducimus totam repellendus fugiat vel dolorum. Commodi, vel. Aliquid quia voluptas esse accusantium? Libero impedit, odit dolorum sint fugit error.</p>
-                    <div class="become__instructor__list">
-                        <ul>
-                            <li>
-                                <div class="become__instructor__img">
-                                    <img loading="lazy" src="{{ asset('template') }}/front/img/dashbord/check__1.png" alt="">
-                                </div>
-
-                                Basic knowledge and detailed understanding of CSS3 to create.
-                            </li>
-                            <li>
-                                <div class="become__instructor__img">
-                                    <img loading="lazy" src="{{ asset('template') }}/front/img/dashbord/check__1.png" alt="">
-                                </div>
-
-                                Details Idea about HTMLS, Creating Basic Web Pages using HTMLS
-                            </li>
-
-                        </ul>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, voluptas.</p>
-
-                </div>
-            </div>
-
-
-
-            <div class="col-xl-6 col-lg-6 col-md-12 col-12">
-                <form action="{{ route('affiliate.register.store') }}" method="post">
-                    @csrf
-                    <div class="become__instructor__form">
-                        <div class="row">
-                            <label for="#">Subdomain</label>
+            <div class="row g-20">
+                <div class="col-xl-6 col-md-4 col-sm-6">
+                    <div class="mb-24">
+                        <label for="subdomain" class="form-label mb-8 h6"> Nama Lengkap</label>
+                        <div class="position-relative">
                             <div class="input-group mb-1">
-                                <input type="text" class="form-control" name="subdomain" placeholder="Soni" required>
+                                <input type="text" value="{{ old('subdomain') }}" class="form-control py-11 ps-40 @error('subdomain') is-invalid @enderror" name="subdomain" placeholder="Soni" required>
                                 <span class="input-group-text">@kampunginggris.xyz</span>
                             </div>
-
-
-                            <div class="col-xl-12">
-                                <div class="dashboard__form__wraper">
-                                    <div class="dashboard__form__input">
-                                        <label for="#">Bank</label>
-                                        <input type="text" name="account_bank" placeholder="Nama Bank" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-12">
-                                <div class="dashboard__form__wraper">
-                                    <div class="dashboard__form__input">
-                                        <label for="#">Nomor Rekening</label>
-                                        <input type="text" name="account_number" placeholder="Tulis nomor rekening pencairan" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-12">
-                                <div class="dashboard__form__wraper">
-                                    <div class="dashboard__form__input">
-                                        <label for="#">Atas Nama</label>
-                                        <input type="text" name="account_name" placeholder="Tulis atas nama rekening pencairan" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-12">
-                                <div class="dashboard__form__wraper">
-                                    <div class="dashboard__form__input">
-                                        <label for="#">Nomor Telepon/WA Aktif</label>
-                                        <input type="text" name="phone_number" placeholder="082231050500" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-xl-12">
-                                <div class="dashboard__form__wraper">
-                                    <div class="dashboard__form__input">
-                                        <label for="#">Alamat Lengkap</label>
-                                        <textarea name="address" id="" cols="30"
-                                            rows="10" placeholder="Tulis alamat lengkapmu" required></textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="become__instructor__check">
-                                <input class="become__instructor__check__input" type="checkbox" name="snk" value="1" id="flexCheckDefault" required>
-                                <label class="become__instructor__check__label" for="flexCheckDefault">
-                                    You agree to our friendly <a href="privacy-policy.html">Privacy Policy</a>.
-                                </label>
-                            </div>
-
-
-                            <div class="col-xl-12">
-                                <div class="dashboard__form__button">
-                                    <button class="default__button" type="submit">Kirim Data</button>
-                                </div>
-                            </div>
+                            <span class="position-absolute top-50 translate-middle-y ms-16 text-gray-600 d-flex"><i class="ph ph-user"></i></span>
                         </div>
+                        @error('subdomain')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                        @enderror
                     </div>
-                </form>
+
+                    <div class="mb-24">
+                        <label for="phone_number" class="form-label mb-8 h6">Nomor WA</label>
+                        <div class="position-relative">
+                            <div class="input-group mb-1">
+                                <input type="text" value="{{ old('phone_number') }}" class="form-control py-11 ps-40 @error('phone_number') is-invalid @enderror" name="phone_number" placeholder="11223344" required>
+                            </div>
+                            <span class="position-absolute top-50 translate-middle-y ms-16 text-gray-600 d-flex"><i class="ph ph-user"></i></span>
+                        </div>
+                        @error('phone_number')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-24">
+                        <label for="address" class="form-label mb-8 h6"> Alamat Lengkap</label>
+                        <div class="position-relative">
+                            <textarea type="text" name="address" rows="5" value="{{ old('address') }}" class="form-control py-11 ps-40 @error('address') is-invalid @enderror" id="address" placeholder="Alamat Lengkap"></textarea>
+                            <span class="position-absolute top-50 translate-middle-y ms-16 text-gray-600 d-flex"><i class="ph ph-user"></i></span>
+                        </div>
+                        @error('address')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-md-4 col-sm-6">
+                    <div class="mb-24">
+                        <label for="account_bank" class="form-label mb-8 h6">Bank</label>
+                        <div class="position-relative">
+                            <div class="input-group mb-1">
+                                <input type="text" value="{{ old('account_bank') }}" class="form-control py-11 ps-40 @error('account_bank') is-invalid @enderror" name="account_bank" placeholder="BRI" required>
+                            </div>
+                            <span class="position-absolute top-50 translate-middle-y ms-16 text-gray-600 d-flex"><i class="ph ph-user"></i></span>
+                        </div>
+                        @error('account_bank')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-24">
+                        <label for="account_number" class="form-label mb-8 h6">Nomor Rekening</label>
+                        <div class="position-relative">
+                            <div class="input-group mb-1">
+                                <input type="text" value="{{ old('account_number') }}" class="form-control py-11 ps-40 @error('account_number') is-invalid @enderror" name="account_number" placeholder="11223344" required>
+                            </div>
+                            <span class="position-absolute top-50 translate-middle-y ms-16 text-gray-600 d-flex"><i class="ph ph-user"></i></span>
+                        </div>
+                        @error('account_number')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-24">
+                        <label for="account_name" class="form-label mb-8 h6">Rekening Atas Nama</label>
+                        <div class="position-relative">
+                            <div class="input-group mb-1">
+                                <input type="text" value="{{ old('account_name') }}" class="form-control py-11 ps-40 @error('account_name') is-invalid @enderror" name="account_name" placeholder="Sofa Mania" required>
+                            </div>
+                            <span class="position-absolute top-50 translate-middle-y ms-16 text-gray-600 d-flex"><i class="ph ph-user"></i></span>
+                        </div>
+                        @error('account_name')
+                        <div class="alert alert-danger mt-2">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+
+                </div>
             </div>
-        </div>
+            <div class="mb-32 flex-between flex-wrap gap-8">
+                <div class="form-check mb-0 flex-shrink-0">
+                    <input class="form-check-input flex-shrink-0 rounded-4" type="checkbox" name="snk" value="1">
+                    <label class="form-check-label text-15 flex-grow-1" for="snk">You agree to our friendly Privacy Policy.</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-main rounded-pill w-100">Kirim Data</button>
+        </form>
     </div>
 </div>
 @endsection

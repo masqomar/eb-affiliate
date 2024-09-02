@@ -15,6 +15,8 @@ class DashboardController extends Controller
         $totalPrograms = Program::where('is_active', 1)->count();
 
         $affId = Tenant::where('user_id', auth()->user()->id)->first();
-        return view('dashboard', compact('activeUsers', 'totalPrograms', 'affId'));
+
+        $totalVisitCount = Tenant::where('user_id', auth()->user()->id)->withTotalVisitCount()->first()->visit_count_total ?? '0';
+        return view('dashboard', compact('activeUsers', 'totalPrograms', 'affId', 'totalVisitCount'));
     }
 }

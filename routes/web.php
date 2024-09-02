@@ -16,29 +16,6 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-// Route::domain('{subdomain}.' . config('app.short_url'))->group(function () {
-//     Route::get('/', function () {
-//         return 'Subsomain Test';
-//     });
-// });
-
-Route::get('/_t', function () {
-    // Response is an array of updates.
-    $updates = \NotificationChannels\Telegram\TelegramUpdates::create()
-        // (Optional). Get's the latest update. NOTE: All previous updates will be forgotten using this method.
-        // ->latest()
-
-        // (Optional). Limit to 2 updates (By default, updates starting with the earliest unconfirmed update are returned).
-        ->limit(2)
-
-        // (Optional). Add more params to the request.
-        ->options([
-            'timeout' => 0,
-        ])
-        ->get();
-
-    dd($updates);
-})->name('test');
 
 Route::domain('{tenant:subdomain}.' . config('app.url'))->name('subdomain.')->group(function () {
     Route::get('/', [\App\Http\Controllers\Front\SubdomainIndexController::class, 'index'])->name('index');
@@ -78,9 +55,7 @@ Route::post('payment/callback', [\App\Http\Controllers\Front\ProgramOnlineContro
 Route::post('/periode/{program_id}', [\App\Http\Controllers\Front\IndexController::class, 'getPeriod']);
 
 // Dashboard
-Route::middleware(['auth', 'web'])->group(function () {
-    // Route::get('/', fn () => view('dashboard'));
-    Route::get('/dashboard', fn() => view('dashboard'));
+Route::middleware(['auth', 'web', 'verified'])->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard.index');
 
     Route::get('/profile', App\Http\Controllers\ProfileController::class)->name('profile');

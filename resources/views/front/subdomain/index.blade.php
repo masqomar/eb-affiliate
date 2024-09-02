@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Home 1 | Edurock - Education LMS Template</title>
+    <title>Kampung Inggris Booster | Tempat terbaik untuk belajar bahasa Inggris</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
