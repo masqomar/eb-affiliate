@@ -28,7 +28,7 @@ class RegistrationController extends Controller
         Tenant::create([
             'user_id'           => auth()->user()->id,
             'subdomain'         => $request->subdomain,
-            'subdomain_link'    => $request->subdomain.'.kampunginggris.xyz',
+            'subdomain_link'    => $request->subdomain.'.englishboosterofficial.com',
             'account_bank'      => $request->account_bank,
             'account_number'    => $request->account_number,
             'account_name'      => $request->account_name,
